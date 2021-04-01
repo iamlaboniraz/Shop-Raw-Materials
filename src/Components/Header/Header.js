@@ -7,7 +7,7 @@ const Header = () => {
   const [loggedInUser] = useContext(UserContext)
   return (
     <Navbar collapseOnSelect expand="lg" bg="info" variant="dark">
-      <Navbar.Brand href="/">Fresh Valley</Navbar.Brand>
+      <Navbar.Brand href="/">Shop Raw materials</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
