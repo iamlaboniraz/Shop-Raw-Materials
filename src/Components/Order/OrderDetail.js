@@ -1,7 +1,9 @@
 import React from 'react';
 
 const OrderDetail = (order) => {
-    const { user, name, price, wight, imageURL } = order.order
+    console.log("order",order)
+    const { address, check, orderTime,user } = order.order;
+    const { imageURL,name,price,wight } = order.order.checkout
     return (
 
         <tr>
@@ -11,6 +13,9 @@ const OrderDetail = (order) => {
             <td>{name}</td>
             <td>{wight}</td>
             <td>{price}</td>
+            <td>{check}</td>
+            <td>{address}</td>
+            <td>{ new Date(orderTime).toDateString('dd/MM/YYYY')}</td>
         </tr>
 
 

@@ -37,6 +37,9 @@ const Order = () => {
                                     <th scope="col">Product Name</th>
                                     <th scope="col">Wight</th>
                                     <th scope="col">Price</th>
+                                    <th scope="col">Phone Number</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Checkout Time</th>
 
                                 </tr>
                             </thead>
