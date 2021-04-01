@@ -5,7 +5,7 @@ const ManageProductDetails = (product) => {
     const { _id, user, name, price, wight } = product.product;
 
     const deleteProduct = (event,id) => {
-        const url = `http://localhost:5055/manageProduct/${id}`;
+        const url = `https://lychee-tart-92702.herokuapp.com/manageProduct/${id}`;
         if (window.confirm('Are you sure?')) 
         {
             fetch(url, {

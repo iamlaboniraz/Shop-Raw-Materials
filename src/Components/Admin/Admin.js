@@ -19,7 +19,7 @@ const Admin = () => {
             wight: data.wight,
             imageURL: imageURL
         };
-        const url = `http://localhost:5055/addProduct`;
+        const url = `https://lychee-tart-92702.herokuapp.com/addProduct`;
 
         fetch(url, {
             method: 'POST',

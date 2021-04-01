@@ -10,7 +10,7 @@ const Checkout = () => {
     const [checkout, setCheckout] = useState([]);
 
     useEffect(() => {
-        const url = `http://localhost:5055/products/` + _id.id;
+        const url = `https://lychee-tart-92702.herokuapp.com/products/` + _id.id;
         fetch(url)
             .then(res => res.json())
             .then(data => setCheckout(data))
@@ -28,7 +28,7 @@ const Checkout = () => {
             address: data.address,
             orderTime: new Date()
         };
-        const url = `http://localhost:5055/checkout`;
+        const url = `https://lychee-tart-92702.herokuapp.com/checkout`;
 
         fetch(url, {
             method: 'POST',
