@@ -1,91 +1,93 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { Table } from 'reactstrap';
-
+import { UserContext } from '../../App';
+import { useForm } from "react-hook-form";
+import './Checkout.css'
 const Checkout = () => {
+    const { register, handleSubmit } = useForm();
+    const [loggedInUser] = useContext(UserContext);
     let _id = useParams();
     const [checkout, setCheckout] = useState([]);
 
     useEffect(() => {
-        console.log(_id)
         const url = `http://localhost:5055/products/` + _id.id;
-        console.log(url)
         fetch(url)
             .then(res => res.json())
             .then(data => setCheckout(data))
     }, [_id])
 
-    const { user, name, price, wight } = checkout;
-    console.log(user)
+    const { name, price, wight, imageURL } = checkout;
+
+
+    const onSubmit = data => {
+        const user = { ...loggedInUser }
+        const checkoutDetail = {
+            checkout: checkout,
+            user: user.email,
+            check: data.phoneNumber,
+            address: data.address,
+            orderTime: new Date()
+        };
+        const url = `http://localhost:5055/checkout`;
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(checkoutDetail)
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                alert('Your order placed successfully', data)
+            })
+    }
     return (
-        <div>
-            <div style={{ margin: "200px", boxShadow: "10px 10px 40px rgb(3, 54, 33)" }} class="card">
-                <div style={{ color: "rgb(3, 54, 33)" }} class="card-header"><strong>Checkout</strong> </div>
 
-                <table class="table ">
-                    <thead>
-                        <tr style={{ backgroundColor: "rgb(12, 103, 126)", color: "white" }}>
-                            <th>Description</th>
-                            <th>Quantity</th>
-                            <th>Wight</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
+        <div className="row">
+            <div className="col-75">
+                <div className="container">
+                    <div style={{ margin: "10px" }} className="card">
+                        <div className="card-body">
+                            <h2 style={{ color: "rgb(87, 11, 17)" }} className="card-title">Checkout</h2>
+                            {/* checkout form */}
+                            <form className="product-form" onSubmit={handleSubmit(onSubmit)}>
+                                <div className="form-group">
+                                    <label>Email Address</label>
+                                    <input name="email" defaultValue={loggedInUser.email} ref={register} className="form-control" />
+                                </div>
+                                <div className="form-group">
+                                    <label>Phone Number</label>
+                                    <input name="phoneNumber" ref={register} className="form-control" placeholder="Enter Phone number" />
+                                </div>
 
-                    <tbody>
-                        <tr>
-                            <td>{name}</td>
-                            <td>1</td>
-                            <td>{wight}</td>
-                            <td>{price}</td>
-                        </tr>
-
-                    </tbody>
-                </table>
-
-                <div style={{ textAlign: "right" }} class="card-footer">
-                    <button className="btn btn-danger ">Checkout</button>
+                                <div className="form-group">
+                                    <label>Your Address</label>
+                                    <input name="address" ref={register} className="form-control" placeholder="Enter Your Address" />
+                                </div>
+                                <input type="submit" value="Checkout" className="btn btn-block btn-lg btn-danger" />
+                            </form>
+                        </div>
+                    </div>
                 </div>
-
             </div>
 
+             {/* checkout Detail */}
+            <div className="col-25">
+                <div className="container">
+                    <h4>Checkout Detail <span className="price" style={{ color: "black" }}><i className="fa fa-shopping-cart"></i></span></h4><hr />
+                    <p><a href="#">product Picture</a><img style={{ height: "100px", width: "150px" }} src={imageURL}
+                        className="img-fluid img-thumbnail" alt="Sheep" /></p>
+                    <p><a href="#">Product Name</a> <span className="price">{name}</span></p>
+                    <p><a href="#">Wight</a> <span className="price">{wight}</span></p>
+                    <p><a href="#">Price</a> <span className="price">${price}</span></p>
+
+                    <hr></hr>
+                    <p>Total Price <span className="price" style={{ color: "black" }}><b>${price}</b></span></p>
+                </div>
+            </div>
         </div>
-
-
-
-
-        // <Table style={{margin:"100px"}} striped bordered hover>
-        //     <thead>
-        //         <tr>
-        //             <th>Description</th>
-        //             <th>Price</th>
-        //             <th>Quantity</th>
-        //             <th>Wight</th>
-        //             <hr/>
-        //         </tr>
-
-        //     </thead>
-        //     <tbody>
-        //         <tr>
-        //             <td>{name}</td>
-        //             <td>{price}</td>
-        //             <td>1</td>
-        //             <td>{wight}</td>
-        //         </tr>
-
-        //     </tbody>
-        // </Table>
-
-
-
-
-
-        // <div>
-        //     <h2>Email = {user}</h2>
-        //     <h2>Name = {name}</h2>
-        //     <h2>price = {price}</h2>
-        //     <h2>wight = {wight}</h2>
-        // </div>
     );
 };
 

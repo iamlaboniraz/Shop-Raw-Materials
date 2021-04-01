@@ -6,14 +6,14 @@ const OrderDetail = (order) => {
 
         <tr>
             <th scope="row"><img style={{ height: "100px", width: "150px" }} src={imageURL}
-                class="img-fluid img-thumbnail" alt="Sheep" /></th>
+                className="img-fluid img-thumbnail" alt="Sheep" /></th>
             <td>{user}</td>
             <td>{name}</td>
             <td>{wight}</td>
             <td>{price}</td>
         </tr>
 
-       
+
     );
 };
 

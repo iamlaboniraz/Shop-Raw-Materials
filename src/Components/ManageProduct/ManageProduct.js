@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Table } from 'react-bootstrap';
 import ManageProductDetails from './ManageProductDetails';
 
 const ManageProduct = () => {

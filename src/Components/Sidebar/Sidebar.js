@@ -1,10 +1,8 @@
-import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React from 'react';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import AllInboxIcon from '@material-ui/icons/AllInbox';
-import { Nav, Navbar } from 'react-bootstrap';
-import './Sidebar.css'
 
 const Sidebar = () => {
     return (

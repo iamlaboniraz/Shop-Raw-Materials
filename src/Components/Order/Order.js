@@ -4,9 +4,8 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { UserContext } from '../../App';
 import OrderDetail from './OrderDetail';
-import { Table } from 'react-bootstrap';
 const Order = () => {
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const [loggedInUser] = useContext(UserContext);
     const [orders, setOrders] = useState([])
     useEffect(() => {
         fetch('http://localhost:5055/orders?email=' + loggedInUser.email, {
@@ -20,18 +19,14 @@ const Order = () => {
         })
             .then(res => res.json())
             .then(data => setOrders(data))
-    }, [])
+    }, [loggedInUser.email])
 
 
     return (
 
-        <div style={{ marginTop: "50px",textAlign: "center" }} className="container">
+        <div style={{ marginTop: "50px", textAlign: "center" }} className="container">
             <div className="jumbotron">
                 <div className="card">
-                    {/* <div className="card-header">
-                        All Order List
-                    </div> */}
-                    {/* <img src="..." className="card-img-top" alt="..."/> */}
                     <div className="card-body">
                         <h5 className="card-title">All Order List</h5>
                         <table class="table table-dark">
@@ -46,7 +41,7 @@ const Order = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                
+
                                 {
                                     orders.map(order => <OrderDetail key={order._id} order={order}></OrderDetail>)
                                 }
@@ -59,7 +54,7 @@ const Order = () => {
             </div>
         </div>
 
-       
+
     );
 };
 

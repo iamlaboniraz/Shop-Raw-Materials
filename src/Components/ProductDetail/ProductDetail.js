@@ -1,29 +1,16 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-// import {Card, Button} from 'react-bootstrap';
-// import Checkout from '../Checkout/Checkout';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons';
-// import './ProductDetail';
-
-
-
 import { makeStyles } from '@material-ui/core/styles';
-
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-
 import { red } from '@material-ui/core/colors';
-
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
-
 import { Button } from 'reactstrap';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
 
 const ProductDetail = ({ product }) => {
     const classes = useStyles();
-    console.log("product", product)
     const history = useHistory();
 
     const handleClick = (_id) => {
@@ -55,7 +41,7 @@ const ProductDetail = ({ product }) => {
         <Card className={classes.root}>
             <CardHeader
                 avatar={
-                    <Avatar aria-label="recipe" className={classes.avatar}>
+                    <Avatar aria-label="product" className={classes.avatar}>
                         F
                     </Avatar>
                 }

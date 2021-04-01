@@ -17,6 +17,7 @@ import Admin from './Components/Admin/Admin';
 import Order from './Components/Order/Order';
 import Checkout from './Components/Checkout/Checkout';
 import ManageProduct from './Components/ManageProduct/ManageProduct';
+import NoMatch from './Components/NoMatch/NoMatch';
 
 export const UserContext = createContext()
 function App() {
@@ -52,6 +53,11 @@ function App() {
           <Route exact path="/">
             <Products></Products>
           </Route>
+
+          <Route path="*">
+          <NoMatch></NoMatch>
+        </Route>
+
         </Switch>
       </Router>
     </UserContext.Provider>
