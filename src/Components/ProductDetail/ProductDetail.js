@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { red } from '@material-ui/core/colors';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+
 import { Button } from 'reactstrap';
 
 const useStyles = makeStyles((theme) => ({
@@ -38,7 +39,9 @@ const ProductDetail = ({ product }) => {
         history.push(`/products/${_id}`)
     }
     return (
+        
         <Card className={classes.root}>
+            
             <CardHeader
                 avatar={
                     <Avatar aria-label="product" className={classes.avatar}>
